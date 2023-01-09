@@ -1,0 +1,57 @@
+2022-12-07 15:33:36,588 :INFO :====== WebDriver manager ======
+2022-12-07 15:33:42,234 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-07 15:33:45,032 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-07 15:33:52,811 :INFO :******** Verifying Login test ********
+2022-12-07 15:33:57,523 :INFO :******** Login Test is successful *******
+2022-12-07 15:41:40,168 :INFO :====== WebDriver manager ======
+2022-12-07 15:41:42,677 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-07 15:41:45,422 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-07 15:41:47,349 :INFO :******** Verifying Login test ********
+2022-12-07 15:42:01,502 :INFO :******** Login Test is successful *******
+2022-12-07 15:43:07,059 :INFO :====== WebDriver manager ======
+2022-12-07 15:43:09,457 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-07 15:43:11,670 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-07 15:43:13,210 :INFO :******** Verifying Login test ********
+2022-12-07 15:43:17,442 :INFO :******** Login Test is successful *******
+2022-12-08 15:58:10,216 :INFO :====== WebDriver manager ======
+2022-12-08 15:58:13,407 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-08 15:58:16,947 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-08 15:58:18,715 :INFO :******** Verifying Login test ********
+2022-12-08 15:58:23,124 :INFO :******** Login Test is successful *******
+2022-12-08 16:08:33,451 :INFO :====== WebDriver manager ======
+2022-12-08 16:08:37,115 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-08 16:08:39,891 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-08 16:08:41,679 :INFO :******** Verifying Login test ********
+2022-12-08 16:08:45,945 :INFO :******** Login Test is successful *******
+2022-12-14 10:15:08,310 :INFO :====== WebDriver manager ======
+2022-12-14 10:15:11,691 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-14 10:15:14,407 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-14 10:15:16,279 :INFO :******** Verifying Login test ********
+2022-12-14 10:15:20,189 :INFO :******** Login Test is successful *******
+2022-12-14 10:21:28,326 :INFO :====== WebDriver manager ======
+2022-12-14 10:21:31,424 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-14 10:21:33,919 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-14 10:21:35,344 :INFO :******** Verifying Login test ********
+2022-12-14 10:21:39,523 :INFO :******** Login Test is successful *******
+2022-12-14 10:24:49,261 :INFO :====== WebDriver manager ======
+2022-12-14 10:24:51,823 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-14 10:24:54,290 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-14 10:24:55,692 :INFO :******** Verifying Login test ********
+2022-12-14 10:24:59,641 :INFO :******** Login Test is successful *******
+2022-12-14 10:27:59,742 :INFO :******** Verifying Login test ********
+2022-12-14 10:28:04,301 :INFO :******** Login Test is successful *******
+2022-12-14 10:31:47,292 :INFO :====== WebDriver manager ======
+2022-12-14 10:31:48,061 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-14 10:31:48,899 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-14 10:31:50,150 :INFO :******** Verifying Login test ********
+2022-12-14 10:31:54,362 :INFO :******** Login Test is successful *******
+2022-12-30 09:25:14,262 :INFO :====== WebDriver manager ======
+2022-12-30 09:25:15,842 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-30 09:25:17,185 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-30 09:25:18,785 :INFO :******** Verifying Login test ********
+2022-12-30 09:25:25,479 :INFO :******** Login Test is successful *******
+2023-01-03 13:24:37,785 :INFO :====== WebDriver manager ======
+2023-01-03 13:24:40,474 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2023-01-03 13:24:42,181 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2023-01-03 13:24:44,147 :INFO :******** Verifying Login test ********
+2023-01-03 13:24:48,935 :INFO :******** Login Test is successful *******

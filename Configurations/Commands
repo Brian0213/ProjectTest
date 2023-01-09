@@ -1,0 +1,24 @@
+pytest testCases/test_login.py -v --html=./cleo.html # generation html
+pytest testCases/test_login.py -v --html=Report/cleo1.html --browser chrome # into a folder
+
+pytest testCases/test_archivePage.py -v --html=Report/report.html --browser chrome
+
+pytest -v -s testCases/test_login.py --browser chrome
+
+pytest -s -v -m "sanity" --html=Report/report.html testCases/ --browser chrome # for sanity test.
+pytest -s -v -m "regression" --html=Report/report.html testCases/ --browser chrome
+
+pytest -s -v -m "sanity or regression" --html=Report/report.html testCases/ --browser chrome
+
+pytest -s -v -m "sanity and regression" --html=Report/report.html testCases/ --browser chrome
+
+pytest -s -v -m "sanity and/or regression" --html=Report/report.html testCases/ --browser chrome # for sanity and regression test. (-m “sanity”, -m “regression”, -m “sanity and regression”, -m “sanity or regression”)
+
+
+pytest -v -s -n=2 testCases/test_login.py --browser chrome firefox
+
+pytest -v -s --alluredir="C:\Users\oluse\PycharmProjects\ProjectTest\allurereports\reports" .\allurereports\test_orangehrm.py
+
+To generate the allure report, launch the command line in admin mode and run the command:
+
+allure serve C:\Users\oluse\PycharmProjects\ProjectTest\allurereports\reports

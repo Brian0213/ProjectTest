@@ -1,0 +1,5 @@
+  2022-12-07 14:17:12,990 :INFO :====== WebDriver manager ======
+2022-12-07 14:17:17,233 :INFO :Get LATEST chromedriver version for google-chrome 108.0.5359
+2022-12-07 14:17:22,643 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
+2022-12-07 14:17:24,750 :INFO :******** Verifying Login test ********
+2022-12-07 14:17:30,435 :INFO :******** Login Test is successful *******
