@@ -12,6 +12,7 @@ chrome_options = Options()
 
 options = webdriver.ChromeOptions()
 options.add_argument("start-maximized")
+options.add_argument("headless")
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
 
