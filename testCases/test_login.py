@@ -27,7 +27,6 @@ class Test_001_Login:
         self.lp.clickLogin()
         self.logger.info("******** Login Test is successful *******")
         # self.driver.assert_text()
-        # self.driver.save_screenshot(self, r"C:\Users\oluse\PycharmProjects\ProjectTest\Screenshots\HomePage.png")
         self.driver.save_screenshot("/Users/oluse/PycharmProjects/ProjectTest/Screenshots/LoginPage.png")
         self.driver.close()
         self.driver.quit()
