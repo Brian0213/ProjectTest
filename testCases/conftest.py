@@ -3,26 +3,28 @@ from selenium import webdriver
 import pytest
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+import chromedriver_autoinstaller as chromedriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options
-
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 chrome_options = Options()
 
 options = webdriver.ChromeOptions()
 options.add_argument("start-maximized")
-options.add_argument("headless")
+# options.add_argument("headless")+
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
 
 @pytest.fixture()
 def setup(browser):
+    global driver
     if browser == 'chrome':
         driver = webdriver.Chrome(options=options, service=Service(ChromeDriverManager().install()))
     # if browser == 'Firefox':
     #     driver1 = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
     return driver
+
 
 # s = Service("/Users/ooojeyin/PycharmProjects/SDET/Driver/chromedriver 4")
 # webdriver.Chrome(service=s)
@@ -58,6 +60,20 @@ def pytest_addoption(parser):      # This will get the value from CLI/hooks
 @pytest.fixture()
 def browser(request):    # This will return the Browser value to the setup method.
     return request.config.getoption("--browser")
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    pytest_html = item.config.pluginmanager.getplugin("html")
+    outcome = yield
+    report = outcome.get_result()
+    extra = getattr(report, "extra", [])
+    if report.when == "call":
+        # always add url to report
+        extra.append(pytest_html.extras.url("http://www.example.com/"))
+        xfail = hasattr(report, "wasxfail")
+        if (report.skipped and xfail) or (report.failed and not xfail):
+            # only add additional html on failure
+            extra.append(pytest_html.extras.html('<div style="background:yellow;">Additional HTML</div>'))
+        report.extra = extra
 
 
 
