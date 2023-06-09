@@ -109,3 +109,68 @@
 2023-03-31 12:57:36,597 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
 2023-03-31 12:57:39,970 :INFO :******** Verifying Login test ********
 2023-03-31 12:57:44,046 :INFO :******** Login Test is successful *******
+2023-04-11 08:44:40,489 :INFO :====== WebDriver manager ======
+2023-04-11 08:44:42,814 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-11 08:44:43,990 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-11 08:44:47,431 :INFO :******** Verifying Login test ********
+2023-04-11 08:44:54,171 :INFO :******** Login Test is successful *******
+2023-04-11 08:45:37,885 :INFO :====== WebDriver manager ======
+2023-04-11 08:45:38,700 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-11 08:45:39,805 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-11 08:45:43,829 :INFO :******** Verifying Login test ********
+2023-04-11 08:45:49,345 :INFO :******** Login Test is successful *******
+2023-04-11 09:56:15,974 :INFO :====== WebDriver manager ======
+2023-04-11 09:56:17,266 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-11 09:56:18,343 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-11 09:56:23,131 :INFO :******** Verifying Login test ********
+2023-04-11 09:56:29,195 :INFO :******** Login Test is successful *******
+2023-04-11 09:58:03,333 :INFO :====== WebDriver manager ======
+2023-04-11 09:58:04,772 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-11 09:58:05,757 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-11 09:58:11,547 :INFO :******** Verifying Login test ********
+2023-04-11 09:58:16,911 :INFO :******** Login Test is successful *******
+2023-04-11 10:11:56,360 :INFO :====== WebDriver manager ======
+2023-04-11 10:11:57,740 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-11 10:11:58,867 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-11 10:12:03,433 :INFO :******** Verifying Login test ********
+2023-04-11 10:12:07,366 :INFO :******** Login Test is successful *******
+2023-04-11 10:15:27,950 :INFO :====== WebDriver manager ======
+2023-04-11 10:15:29,458 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-11 10:15:30,422 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-11 10:15:33,897 :INFO :******** Verifying Login test ********
+2023-04-11 10:15:37,417 :INFO :******** Login Test is successful *******
+2023-04-13 08:46:38,535 :INFO :====== WebDriver manager ======
+2023-04-13 08:46:39,821 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-13 08:46:41,281 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-13 08:46:46,530 :INFO :******** Verifying Login test ********
+2023-04-13 08:46:51,420 :INFO :******** Login Test is successful *******
+2023-04-13 08:47:55,379 :INFO :====== WebDriver manager ======
+2023-04-13 08:47:57,223 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-13 08:47:58,377 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-13 08:48:02,654 :INFO :******** Verifying Login test ********
+2023-04-13 08:48:06,825 :INFO :******** Login Test is successful *******
+2023-04-13 08:50:24,213 :INFO :====== WebDriver manager ======
+2023-04-13 08:50:26,211 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-13 08:50:27,392 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-13 08:50:31,851 :INFO :******** Verifying Login test ********
+2023-04-13 08:50:36,435 :INFO :******** Login Test is successful *******
+2023-04-13 08:56:03,571 :INFO :====== WebDriver manager ======
+2023-04-13 08:56:05,806 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-13 08:56:08,843 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-13 08:56:13,291 :INFO :******** Verifying Login test ********
+2023-04-13 08:56:18,424 :INFO :******** Login Test is successful *******
+2023-04-13 08:56:59,004 :INFO :====== WebDriver manager ======
+2023-04-13 08:57:01,367 :INFO :Get LATEST chromedriver version for google-chrome 111.0.5563
+2023-04-13 08:57:02,942 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\111.0.5563\chromedriver.exe] found in cache
+2023-04-13 08:57:07,393 :INFO :******** Verifying Login test ********
+2023-04-13 08:57:12,556 :INFO :******** Login Test is successful *******
+2023-06-09 04:07:12,448 :INFO :====== WebDriver manager ======
+2023-06-09 04:07:13,657 :INFO :Get LATEST chromedriver version for google-chrome 114.0.5735
+2023-06-09 04:07:14,582 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\114.0.5735\chromedriver.exe] found in cache
+2023-06-09 04:07:18,490 :INFO :******** Verifying Login test ********
+2023-06-09 04:07:22,440 :INFO :******** Login Test is successful *******
+2023-06-09 09:45:14,180 :INFO :====== WebDriver manager ======
+2023-06-09 09:45:15,111 :INFO :Get LATEST chromedriver version for google-chrome 114.0.5735
+2023-06-09 09:45:16,029 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\114.0.5735\chromedriver.exe] found in cache
+2023-06-09 09:45:17,584 :INFO :******** Verifying Login test ********
+2023-06-09 09:45:21,653 :INFO :******** Login Test is successful *******

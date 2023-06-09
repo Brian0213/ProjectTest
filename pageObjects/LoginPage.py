@@ -8,15 +8,15 @@ class LoginPage:
         self.driver = driver
 
     def setUserName(self, username):
-        WebDriverWait(self.driver, 20).until( EC.element_to_be_clickable((By.XPATH, "//input[@id='Email']"))).clear()
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='Email']"))).send_keys(username)
+        WebDriverWait(self.driver, 10).until( EC.element_to_be_clickable((By.XPATH, "//input[@id='Email']"))).clear()
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='Email']"))).send_keys(username)
 
     def setContinue(self):
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Continue')]"))).click()
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Continue')]"))).click()
 
     def setPassword(self, password):
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='Password']"))).clear()
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='Password']"))).send_keys(password)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='Password']"))).clear()
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//input[@id='Password']"))).send_keys(password)
 
     def clickLogin(self):
         WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Log in')]"))).click()

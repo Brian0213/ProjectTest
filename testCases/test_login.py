@@ -28,13 +28,13 @@ class Test_001_Login:
         self.logger.info("******** Login Test is successful *******")
         act_title = self.driver.title
         # assert =1 ,2
-        # if act_title == "Dashboard / nopCommerce administration":
-        #     assert True
-        #     self.driver.close()
-        # else:
-        #     self.driver.save_screenshot("/Users/oluse/PycharmProjects/ProjectTest/Screenshots/Failed.png")
-        #     self.driver.close()
-        #     assert False
+        if act_title == "Dashboard / nopCommerce administration":
+            assert True
+            self.driver.close()
+        else:
+            self.driver.save_screenshot("/Users/oluse/PycharmProjects/ProjectTest/Screenshots/Failed.png")
+            self.driver.close()
+            assert False
         # self.driver.assert_text()
         # self.driver.save_screenshot("/Users/oluse/PycharmProjects/ProjectTest/Screenshots/LoginPage.png")
         # self.driver.close()
