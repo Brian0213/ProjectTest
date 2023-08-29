@@ -174,3 +174,68 @@
 2023-06-09 09:45:16,029 :INFO :Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\114.0.5735\chromedriver.exe] found in cache
 2023-06-09 09:45:17,584 :INFO :******** Verifying Login test ********
 2023-06-09 09:45:21,653 :INFO :******** Login Test is successful *******
+2023-08-22 09:11:49,921 :INFO :====== WebDriver manager ======
+2023-08-22 09:11:51,702 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:11:51,716 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:11:51,716 :INFO :There is no [win64] chromedriver "116.0.5845.97" for browser google-chrome "116.0.5845.97" in cache
+2023-08-22 09:11:51,716 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:11:51,847 :INFO :WebDriver version 116.0.5845.96 selected
+2023-08-22 09:11:51,848 :INFO :Modern chrome version https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:11:51,848 :INFO :About to download new driver from https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:11:51,971 :INFO :Driver downloading response is 200
+2023-08-22 09:11:52,471 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:11:52,500 :INFO :Driver has been saved in cache [C:\Users\oluse\.wdm\drivers\chromedriver\win64\116.0.5845.97]
+2023-08-22 09:11:56,149 :INFO :******** Verifying Login test ********
+2023-08-22 09:12:01,599 :INFO :******** Login Test is successful *******
+2023-08-22 09:13:26,293 :INFO :====== WebDriver manager ======
+2023-08-22 09:13:28,032 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:28,044 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:28,045 :INFO :There is no [win64] chromedriver "116.0.5845.97" for browser google-chrome "116.0.5845.97" in cache
+2023-08-22 09:13:28,045 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:28,170 :INFO :WebDriver version 116.0.5845.96 selected
+2023-08-22 09:13:28,171 :INFO :Modern chrome version https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:13:28,171 :INFO :About to download new driver from https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:13:28,314 :INFO :Driver downloading response is 200
+2023-08-22 09:13:28,751 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:28,777 :INFO :Driver has been saved in cache [C:\Users\oluse\.wdm\drivers\chromedriver\win64\116.0.5845.97]
+2023-08-22 09:13:32,474 :INFO :******** Verifying Login test ********
+2023-08-22 09:13:38,593 :INFO :******** Login Test is successful *******
+2023-08-22 09:13:53,457 :INFO :====== WebDriver manager ======
+2023-08-22 09:13:55,447 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:55,459 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:55,460 :INFO :There is no [win64] chromedriver "116.0.5845.97" for browser google-chrome "116.0.5845.97" in cache
+2023-08-22 09:13:55,460 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:55,614 :INFO :WebDriver version 116.0.5845.96 selected
+2023-08-22 09:13:55,615 :INFO :Modern chrome version https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:13:55,615 :INFO :About to download new driver from https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:13:55,760 :INFO :Driver downloading response is 200
+2023-08-22 09:13:56,287 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:13:56,316 :INFO :Driver has been saved in cache [C:\Users\oluse\.wdm\drivers\chromedriver\win64\116.0.5845.97]
+2023-08-22 09:13:59,886 :INFO :******** Verifying Login test ********
+2023-08-22 09:14:04,659 :INFO :******** Login Test is successful *******
+2023-08-22 09:24:12,720 :INFO :====== WebDriver manager ======
+2023-08-22 09:24:14,798 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:24:14,813 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:24:14,814 :INFO :There is no [win64] chromedriver "116.0.5845.97" for browser google-chrome "116.0.5845.97" in cache
+2023-08-22 09:24:14,814 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:24:14,963 :INFO :WebDriver version 116.0.5845.96 selected
+2023-08-22 09:24:14,963 :INFO :Modern chrome version https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:24:14,964 :INFO :About to download new driver from https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:24:15,102 :INFO :Driver downloading response is 200
+2023-08-22 09:24:15,518 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:24:15,545 :INFO :Driver has been saved in cache [C:\Users\oluse\.wdm\drivers\chromedriver\win64\116.0.5845.97]
+2023-08-22 09:24:19,112 :INFO :******** Verifying Login test ********
+2023-08-22 09:24:27,267 :INFO :******** Login Test is successful *******
+2023-08-22 09:28:52,646 :INFO :====== WebDriver manager ======
+2023-08-22 09:28:54,228 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:28:54,391 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:28:54,391 :INFO :There is no [win64] chromedriver "116.0.5845.97" for browser google-chrome "116.0.5845.97" in cache
+2023-08-22 09:28:54,392 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:28:54,528 :INFO :WebDriver version 116.0.5845.96 selected
+2023-08-22 09:28:54,529 :INFO :Modern chrome version https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:28:54,530 :INFO :About to download new driver from https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-22 09:28:54,664 :INFO :Driver downloading response is 200
+2023-08-22 09:28:55,139 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-22 09:28:55,172 :INFO :Driver has been saved in cache [C:\Users\oluse\.wdm\drivers\chromedriver\win64\116.0.5845.97]
+2023-08-22 09:28:56,379 :INFO :******** Verifying Login test ********
+2023-08-22 09:28:59,576 :INFO :******** Login Test is successful *******

@@ -1,7 +1,5 @@
 import time
 import pytest
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from pageObjects.LoginPage import LoginPage
 from utilis.readProperties import ReadConfig
 from utilis.customLogger import LogGen

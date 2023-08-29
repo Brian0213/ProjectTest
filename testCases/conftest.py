@@ -7,12 +7,16 @@ import chromedriver_autoinstaller as chromedriver
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.options import Options
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+# driver = webdriver.Chrome(ChromeDriverManager().install())
+
+
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
 chrome_options = Options()
 
 options = webdriver.ChromeOptions()
 options.add_argument("start-maximized")
-# options.add_argument("headless")
+options.add_argument("headless")
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
 
