@@ -239,3 +239,79 @@
 2023-08-22 09:28:55,172 :INFO :Driver has been saved in cache [C:\Users\oluse\.wdm\drivers\chromedriver\win64\116.0.5845.97]
 2023-08-22 09:28:56,379 :INFO :******** Verifying Login test ********
 2023-08-22 09:28:59,576 :INFO :******** Login Test is successful *******
+2023-08-30 08:26:30,585 :INFO :====== WebDriver manager ======
+2023-08-30 08:26:32,097 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-30 08:26:32,113 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-30 08:26:32,113 :INFO :There is no [win64] chromedriver "116.0.5845.111" for browser google-chrome "116.0.5845.111" in cache
+2023-08-30 08:26:32,113 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-30 08:26:32,249 :INFO :WebDriver version 116.0.5845.96 selected
+2023-08-30 08:26:32,250 :INFO :Modern chrome version https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-30 08:26:32,250 :INFO :About to download new driver from https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/win32/chromedriver-win32.zip
+2023-08-30 08:26:32,387 :INFO :Driver downloading response is 200
+2023-08-30 08:26:33,606 :INFO :Get LATEST chromedriver version for google-chrome
+2023-08-30 08:26:33,639 :INFO :Driver has been saved in cache [C:\Users\oluse\.wdm\drivers\chromedriver\win64\116.0.5845.111]
+2023-08-30 08:26:34,779 :INFO :******** Verifying Login test ********
+2023-08-30 08:26:42,513 :INFO :******** Login Test is successful *******
+2024-02-11 16:40:53,788 :INFO :******** Verifying Login test ********
+2024-02-11 16:40:56,470 :INFO :******** Login Test is successful *******
+2024-02-11 16:46:44,759 :INFO :******** Verifying Login test ********
+2024-02-11 16:47:37,914 :INFO :******** Verifying Login test ********
+2024-06-10 18:46:27,364 :INFO :******** Verifying Login test ********
+2024-08-20 20:23:57,752 :INFO :******** Verifying Login test ********
+2024-08-20 20:26:45,081 :INFO :******** Verifying Login test ********
+2024-08-20 20:27:53,684 :INFO :====== WebDriver manager ======
+2024-08-20 20:27:54,687 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:27:54,810 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:27:54,936 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\127.0.6533.119\chromedriver-win32/chromedriver.exe] found in cache
+2024-08-20 20:27:58,085 :INFO :******** Verifying Login test ********
+2024-08-20 20:28:50,189 :INFO :====== WebDriver manager ======
+2024-08-20 20:28:51,065 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:28:51,188 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:28:51,314 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\127.0.6533.119\chromedriver-win32/chromedriver.exe] found in cache
+2024-08-20 20:28:54,461 :INFO :******** Verifying Login test ********
+2024-08-20 20:29:15,806 :INFO :====== WebDriver manager ======
+2024-08-20 20:29:16,683 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:29:16,786 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:29:16,893 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\127.0.6533.119\chromedriver-win32/chromedriver.exe] found in cache
+2024-08-20 20:29:19,977 :INFO :******** Verifying Login test ********
+2024-08-20 20:30:40,322 :INFO :====== WebDriver manager ======
+2024-08-20 20:30:41,211 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:30:41,323 :INFO :Get LATEST chromedriver version for google-chrome
+2024-08-20 20:30:41,427 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\127.0.6533.119\chromedriver-win32/chromedriver.exe] found in cache
+2024-08-20 20:30:44,586 :INFO :******** Verifying Login test ********
+2024-12-28 13:56:38,536 :INFO :====== WebDriver manager ======
+2024-12-28 13:56:39,757 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 13:56:39,861 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 13:56:39,967 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\131.0.6778.204\chromedriver-win32/chromedriver.exe] found in cache
+2024-12-28 13:56:43,127 :INFO :******** Verifying Login test ********
+2024-12-28 13:56:55,653 :INFO :******** Login Test is successful *******
+2024-12-28 13:59:00,761 :INFO :====== WebDriver manager ======
+2024-12-28 13:59:01,940 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 13:59:02,038 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 13:59:02,148 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\131.0.6778.204\chromedriver-win32/chromedriver.exe] found in cache
+2024-12-28 13:59:05,280 :INFO :******** Verifying Login test ********
+2024-12-28 13:59:30,796 :INFO :******** Login Test is successful *******
+2024-12-28 14:57:45,878 :INFO :====== WebDriver manager ======
+2024-12-28 14:57:47,454 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 14:57:47,557 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 14:57:47,665 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\131.0.6778.204\chromedriver-win32/chromedriver.exe] found in cache
+2024-12-28 14:57:50,874 :INFO :******** Verifying Login test ********
+2024-12-28 14:58:16,422 :INFO :******** Login Test is successful *******
+2024-12-28 15:07:41,244 :INFO :====== WebDriver manager ======
+2024-12-28 15:07:42,143 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 15:07:42,247 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 15:07:42,347 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\131.0.6778.204\chromedriver-win32/chromedriver.exe] found in cache
+2024-12-28 15:07:45,578 :INFO :******** Verifying Login test ********
+2024-12-28 15:08:11,081 :INFO :******** Login Test is successful *******
+2024-12-28 15:32:47,567 :INFO :====== WebDriver manager ======
+2024-12-28 15:32:48,458 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 15:32:48,559 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 15:32:48,663 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\131.0.6778.204\chromedriver-win32/chromedriver.exe] found in cache
+2024-12-28 15:32:51,891 :INFO :******** Verifying Login test ********
+2024-12-28 15:33:17,370 :INFO :******** Login Test is successful *******
+2024-12-28 18:10:33,358 :INFO :====== WebDriver manager ======
+2024-12-28 18:10:34,701 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 18:10:34,813 :INFO :Get LATEST chromedriver version for google-chrome
+2024-12-28 18:10:34,933 :INFO :Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\131.0.6778.204\chromedriver-win32/chromedriver.exe] found in cache
+2024-12-28 18:10:38,777 :INFO :******** Verifying Login test ********
+2024-12-28 18:11:04,562 :INFO :******** Login Test is successful *******

@@ -1,7 +1,8 @@
 import configparser
 
 config = configparser.RawConfigParser()
-config.read(r"C:\Users\oluse\PycharmProjects\ProjectTest\Configurations\config.ini")
+#config.read(r"C:\Users\oluse\PycharmProjects\ProjectTest\Configurations\config.ini")
+config.read(r"C:\Users\Owner\PycharmProjects\ProjectTest\Configurations\config.ini")
 
 class ReadConfig:
     @staticmethod

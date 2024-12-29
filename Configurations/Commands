@@ -14,6 +14,7 @@ pytest -s -v -m "sanity and regression" --html=Report/report.html testCases/ --b
 
 pytest -s -v -m "sanity and/or regression" --html=Report/report.html testCases/ --browser chrome # for sanity and regression test. (-m “sanity”, -m “regression”, -m “sanity and regression”, -m “sanity or regression”)
 
+pytest .\testCases\test_name.py --alluredir=AllureReport --browser chrome
 
 pytest -v -s -n=2 testCases/test_login.py --browser chrome firefox
 
@@ -27,3 +28,10 @@ To upgrade webdriver manager:
 1. Uninstall : pip uninstall webdriver_manager
 2. Reinstall: pip install webdriver_manager --upgrade
 3. To show version: pip show webdriver_manager
+
+https://pypi.org/search/?q=html+report
+https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.25.0/
+
+To run a script more than once:
+Install pip install pytest-repeat
+After installation: e.g. of how to run the command "pytest --count=6 test_example.py"
