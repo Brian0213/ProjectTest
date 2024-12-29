@@ -14,12 +14,17 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest selenium webdriver-manager
+          - name: Set up Chrome
+            uses: browser-actions/setup-chrome@v1
+            with:
+              chrome-version: stable  # Install stable Chrome version
 
       - uses: actions/checkout@v3
         if: success() || failure()
       - run: |
           cd testCases
           mkdir -p reports
+          python -m webdriver_manager.chrome install
           pytest test_login_page.py --browser=chrome --html=reports/reports.html
 
       - name: Set output
