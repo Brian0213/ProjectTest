@@ -1,5 +1,8 @@
 import time
+import sys
+import os
 import pytest
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pageObjects')))
 from pageObjects.LoginPage import LoginPage
 from utilis.readProperties import ReadConfig
 from utilis.customLogger import LogGen
@@ -30,6 +33,7 @@ class Test_001_Login:
         time.sleep(8)
         self.logger.info("******** Login Test is successful *******")
         self.driver.quit()
+        print(sys.path)
         # act_title = self.driver.title
         # # assert =1 ,2
         # if act_title == "Dashboard / nopCommerce administration":
