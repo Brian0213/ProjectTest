@@ -4,7 +4,7 @@ import os
 config = configparser.RawConfigParser()
 
 # Get the absolute path to the current script (readProperties.py)
-current_script_path = os.path.abspath(r'C:\Users\Owner\PycharmProjects\ProjectTest\utilis\readProperties.py')
+current_script_path = os.path.abspath(__file__)
 
 # Get the directory containing readProperties.py
 current_dir = os.path.dirname(current_script_path)
