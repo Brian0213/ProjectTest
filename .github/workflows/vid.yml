@@ -33,10 +33,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pytest selenium webdriver-manager
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
+      - name: Install Chrome (Linux only)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
       - name: Verify installation
         run: |
