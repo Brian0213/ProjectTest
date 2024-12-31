@@ -45,7 +45,7 @@ jobs:
       - name: Run Selenium tests (Headless mode with pytest and HTML report)
         run: |
           mkdir -p test-reports
-          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest -n auto --html=test-reports/report.html --self-contained-html tests/
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest -n auto --html=test-reports/report.html --self-contained-html testCases/
 
       - name: Upload HTML Test Report as Artifact
         uses: actions/upload-artifact@v3
