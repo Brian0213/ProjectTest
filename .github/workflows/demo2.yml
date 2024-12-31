@@ -1,3 +1,5 @@
+on: ManU
+
 image: python:3.10
 
 stages:
@@ -29,11 +31,7 @@ test:
   script:
     - export DISPLAY=:99
     - Xvfb :99 -screen 0 1024x768x24 &
-    - python -m unittest discover -s tests -p "test_*.py"
-  artifacts:
-    when: always
-    reports:
-      junit: junit.xml # Optional: to generate JUnit reports
+    - python -m unittest discover -s testCases -p "test_*.py"
 
 # Example of a more robust way to handle the chromedriver download
 # This uses a more specific URL and handles errors better.
