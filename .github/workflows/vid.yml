@@ -33,6 +33,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install pytest selenium webdriver-manager
 
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
       - name: Verify installation
         run: |
           python -m pytest --version
