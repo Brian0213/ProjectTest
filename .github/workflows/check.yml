@@ -16,7 +16,7 @@ jobs:
       - name: Install Chrome dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget unzip libnss3 libxss1 libappindicator3-1 fonts-liberation libasound2
+          sudo apt-get install -y wget unzip libnss3 libxss1 libappindicator3-1 fonts-liberation libasound2 libatk1.0-0 libgtk-3-0
 
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
@@ -34,7 +34,7 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         run: |
           mkdir -p testCases/reports
-          pytest testCases/test_login_page.py --browser=chrome --headless --html=testCases/reports/reports.html
+          pytest testCases/test_login_page.py --browser=chrome --html=testCases/reports/reports.html
 
       - name: Set output
         id: results
@@ -45,5 +45,6 @@ jobs:
         with:
           name: test-report
           path: ${{ steps.results.outputs.artifactPath }}
+
 
 
