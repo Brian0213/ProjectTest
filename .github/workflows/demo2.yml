@@ -1,4 +1,4 @@
-on: Man
+on: Load
 
 image: python:3.10
 
