@@ -1,39 +1,52 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+image: python:3.10
 
-name: Python application
+stages:
+  - test
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+variables:
+  # Use a specific version of ChromeDriver to avoid compatibility issues.
+  CHROME_DRIVER_VERSION: "114.0.5735.90" # Replace with the desired version
+  # Path where the chromedriver will be installed
+  CHROMEDRIVER_PATH: /usr/local/bin/chromedriver
 
-permissions:
-  contents: read
+before_script:
+  - apt-get update -yq
+  - apt-get install -yq wget unzip xvfb libgconf-2-4
+  # Install Google Chrome
+  - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+  - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+  - apt-get update -yq
+  - apt-get install -yq google-chrome-stable
+  # Download and install ChromeDriver
+  - wget "https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION}/chromedriver_linux64.zip"
+  - unzip chromedriver_linux64.zip
+  - chmod +x chromedriver
+  - mv chromedriver $CHROMEDRIVER_PATH
+  - pip install -r requirements.txt
 
-jobs:
-  build:
+test:
+  stage: test
+  script:
+    - export DISPLAY=:99
+    - Xvfb :99 -screen 0 1024x768x24 &
+    - python -m unittest discover -s tests -p "test_*.py"
+  artifacts:
+    when: always
+    reports:
+      junit: junit.xml # Optional: to generate JUnit reports
 
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        pytest
+# Example of a more robust way to handle the chromedriver download
+# This uses a more specific URL and handles errors better.
+# before_script:
+#   - apt-get update -yq
+#   - apt-get install -yq wget unzip xvfb libgconf-2-4
+#   - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+#   - sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+#   - apt-get update -yq
+#   - apt-get install -yq google-chrome-stable
+#   - CHROME_DRIVER_URL=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_DRIVER_VERSION:0:3}" | tr -d '\n')
+#   - wget -O /tmp/chromedriver.zip "https://chromedriver.storage.googleapis.com/${CHROME_DRIVER_URL}/chromedriver_linux64.zip" || exit 1
+#   - unzip /tmp/chromedriver.zip -d /tmp/
+#   - chmod +x /tmp/chromedriver
+#   - mv /tmp/chromedriver $CHROMEDRIVER_PATH
+#   - pip install -r requirements.txt
