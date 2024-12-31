@@ -1,45 +1,64 @@
-name: Login
-on: [push]
+name: Selenium Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  build:
+  selenium-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     steps:
-      - name: Check out code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: '3.9' # Or your preferred version
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          pip install pytest selenium webdriver-manager
-          sudo apt-get update
-          sudo apt-get install -y libnss3 libgdk-pixbuf2.0-0 libatk-bridge2.0-0 libatk1.0-0 libcups2
+          pip install -r requirements.txt
+          pip install pytest pytest-xdist # Install pytest and xdist for parallel tests (optional)
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-
-      - name: Run tests
+      - name: Install Chrome Driver
         run: |
-          mkdir -p testCases/reports
-          pytest testCases/test_login_page.py --browser=chrome --html=testCases/reports/reports.html
+          wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
 
-      - name: Set output
-        id: results
-        run: echo "artifactPath=testCases/reports/" >> $GITHUB_OUTPUT
+      - name: Set Chrome binary path (Important for headless mode)
+        run: |
+          mkdir -p /opt/google/chrome
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          rm google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y --fix-broken
+          sudo apt-get install -y xvfb
 
-      - name: Upload test report
+      - name: Run Selenium tests (Headless mode with pytest)
+        run: |
+          mkdir -p test-reports # Create the directory for reports
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest -n auto --html=test-reports/results.html testCases/ # Run pytest with xdist for parallel tests (-n auto), generate junit xml report
+
+      - name: Upload test results (Optional)
         uses: actions/upload-artifact@v3
+        if: always()
         with:
-          name: test-report
-          path: ${{ steps.results.outputs.artifactPath }}
+          name: test-results
+          path: test-reports
 
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: test-reports/results.html # Path to your test result files
 
 
         
