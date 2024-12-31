@@ -43,5 +43,5 @@ jobs:
 
       - name: Run Selenium tests (Headless mode)
         run: |
-          xvfb-run -a --server-args="-screen 0 1024x768x24" python -m unittest discover -s tests -p "test_*.py" # Or your test runner command
+          xvfb-run -a --server-args="-screen 0 1024x768x24" python -m unittest discover -s testCases -p "test_*.py" # Or your test runner command
 
