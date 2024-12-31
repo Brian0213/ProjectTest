@@ -15,6 +15,12 @@ jobs:
     timeout-minutes: 15
 
     steps:
+        # ... your existing steps (checkout, setup, tests, etc.)
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/deploy-pages@v2
+        # No need for a PAT here anymore!
+        
       - name: Checkout code
         uses: actions/checkout@v3
 
