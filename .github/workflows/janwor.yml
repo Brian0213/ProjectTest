@@ -33,6 +33,13 @@ jobs:
           sudo mv chromedriver /usr/local/bin/
           sudo chmod +x /usr/local/bin/chromedriver
 
+      - name: Install Chrome and necessary libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y libxi6 libgconf-2-4 libnss3 libx11-xcb1
+          sudo apt-get install -y xvfb  # Install X virtual framebuffer for headless testing
+
       - name: Set Chrome binary path
         run: |
           mkdir -p /opt/google/chrome
