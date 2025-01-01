@@ -35,3 +35,7 @@ https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.25.0/
 To run a script more than once:
 Install pip install pytest-repeat
 After installation: e.g. of how to run the command "pytest --count=6 test_example.py"
+
+To update requirements.txt file:
+Run pip freeze > requirements.txt
+
