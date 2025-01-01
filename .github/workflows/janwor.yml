@@ -37,7 +37,10 @@ jobs:
         run: |
           mkdir -p /opt/google/chrome
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo mkdir /etc/sources.list.d
           sudo dpkg -i google-chrome-stable_current_amd64.deb
+          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/sources.list.d/google.list
           rm google-chrome-stable_current_amd64.deb
           sudo apt-get install -y --fix-broken
           sudo apt-get install -y xvfb
