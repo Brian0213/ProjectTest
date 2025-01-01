@@ -1,0 +1,66 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write # Needed for deploying to GitHub Pages
+      id-token: write # Needed for deploying to GitHub Pages
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-xdist pytest-html
+
+      - name: Install Chrome Driver
+        run: |
+          wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+
+      - name: Set Chrome binary path
+        run: |
+          mkdir -p /opt/google/chrome
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          rm google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y --fix-broken
+          sudo apt-get install -y xvfb
+
+      - name: Run Selenium tests
+        run: |
+          mkdir -p test-reports
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest -n auto --html=test-reports/report.html --self-contained-html testCases/
+
+      - name: Upload HTML Test Report as Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: html-test-report
+          path: test-reports/report.html
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: test-reports
