@@ -49,7 +49,7 @@ jobs:
         run: mkdir -p Reports
 
       - name: Move HTML report to Reports folder
-        run: mv testReports/report2.html Reports/selenium_test_report.html
+        run: mv Reports/report2.html Reports/selenium_test_report.html
 
       - name: Upload test report artifact
         uses: actions/upload-artifact@v3
