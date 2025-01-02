@@ -1,0 +1,56 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  selenium-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15  # Adjust as needed
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' # Or your preferred version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt # Make sure you have a requirements.txt
+          pip install pytest pytest-html # Ensure pytest and pytest-html are installed
+
+      - name: Install Chrome Driver
+        run: |
+          wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+
+      - name: Set Chrome binary path (Important for headless mode)
+        run: |
+          mkdir -p /opt/google/chrome
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb
+          rm google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y --fix-broken
+          sudo apt-get install -y xvfb
+
+      - name: Run Selenium tests with pytest (Headless mode)
+        run: |
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest --headless --html=Reports/report.html --self-contained-html
+
+      - name: Ensure Reports folder exists
+        run: mkdir -p Reports
+
+      - name: Upload test report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Selenium Test Report
+          path: Reports/report.html
