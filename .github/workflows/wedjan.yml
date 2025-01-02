@@ -44,7 +44,7 @@ jobs:
 
       - name: Run Selenium tests with pytest (Headless mode)
         run: |
-          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest --headless --html=Reports/report.html --self-contained-html
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases --html=Reports/report.html
 
       - name: Ensure Reports folder exists
         run: mkdir -p Reports
