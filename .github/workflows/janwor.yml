@@ -1,4 +1,4 @@
-name: Selenium Tests with pytest
+name: Selenium Tests
 
 on:
   push:
@@ -18,42 +18,31 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'  # Or your preferred version
+          python-version: '3.9' # Or your preferred version
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest selenium  # Install pytest and Selenium
+          pip install -r requirements.txt # Make sure you have a requirements.txt
 
-      - name: Install Chrome Driver  # Assuming you want to use Chrome
+      - name: Install Chrome Driver
         run: |
           wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
           sudo chmod +x /usr/local/bin/chromedriver
 
-      - name: Install Chrome and necessary libraries
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
-          sudo apt-get install -y libxi6 libgconf-2-4 libnss3 libx11-xcb1
-          sudo apt-get install -y xvfb  # Install X virtual framebuffer for headless testing
-
-      - name: Set Chrome binary path
+      - name: Set Chrome binary path (Important for headless mode)
         run: |
           mkdir -p /opt/google/chrome
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo mkdir /etc/sources.list.d
           sudo dpkg -i google-chrome-stable_current_amd64.deb
-          echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/sources.list.d/google.list
           rm google-chrome-stable_current_amd64.deb
           sudo apt-get install -y --fix-broken
           sudo apt-get install -y xvfb
 
       - name: Run Selenium tests (Headless mode)
         run: |
-          pytest --headless testCases  # Assuming your test files are in testCases directory
+          xvfb-run -a --server-args="-screen 0 1024x768x24" python -m unittest discover -s testCases -p "test_*.py" # Or your test runner command
 
 
