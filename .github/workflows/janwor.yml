@@ -44,5 +44,16 @@ jobs:
       - name: Run Selenium tests (Headless mode)
         run: |
           xvfb-run -a --server-args="-screen 0 1024x768x24" python -m unittest discover -s testCases -p "test_*.py" # Or your test runner command
+          
+      - name: Ensure Reports folder exists
+        run: mkdir -p Reports
 
+      - name: Move HTML report to Reports folder
+        run: mv path/to/generated_report.html Reports/selenium_test_report.html
+
+      - name: Upload test report artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Selenium Test Report
+          path: Reports/selenium_test_report.html
 
