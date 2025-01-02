@@ -20,18 +20,23 @@ class Test_001_Login:
     # @pytest.mark.sanity
     def test_login(self, setup):
         self.logger.info("******** Verifying Login test ********")
+        self.logger.info("********Call the Browser Configuration********")
         self.driver = setup
         self.driver.implicitly_wait(10)
         self.driver.get(self.baseURL)
+        self.logger.info("********Define the LoginPage Driver********")
         self.lp = LoginPage(self.driver)
         time.sleep(10)
+        self.logger.info("********Type the Username*******")
         self.lp.setUserName(self.username)
         time.sleep(3)
+        self.logger.info("********Type the Password*******")
         self.lp.setPassword(self.password)
         time.sleep(3)
+        self.logger.info("******** Click the Log in Button*******")
         self.lp.clickLogin()
         time.sleep(8)
-        self.logger.info("******** Login Test is successful *******")
+        self.logger.info("********Login Test is successful********")
         self.driver.quit()
         print(sys.path)
         # act_title = self.driver.title
