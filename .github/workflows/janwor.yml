@@ -48,8 +48,8 @@ jobs:
       - name: Ensure Reports folder exists
         run: mkdir -p Reports
 
-      # - name: Move HTML report to Reports folder
-      #   run: mv Reports/Report.html Reports/selenium_test_report.html
+      - name: Move HTML report to Reports folder
+        run: mv Reports/Report.html Reports/selenium_test_report.html
 
       - name: Upload test report artifact
         uses: actions/upload-artifact@v3
