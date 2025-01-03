@@ -46,11 +46,11 @@ jobs:
         run: |
           xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases --html=Reports/report.html
 
-      - name: Ensure Reports folder exists
-        run: mkdir -p Reports
+      # - name: Ensure Reports folder exists
+      #   run: mkdir -p Reports
 
-      - name: Move HTML report to Reports folder
-        run: mv Reports/Report.html Reports/report.html
+      # - name: Move HTML report to Reports folder
+      #   run: mv Reports/Report.html Reports/report.html
 
       - name: Upload test report artifact
         uses: actions/upload-artifact@v4
