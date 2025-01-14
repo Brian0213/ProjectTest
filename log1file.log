@@ -393,3 +393,31 @@
 2025-01-02 13:48:01,758 :INFO :********Type the Password*******
 2025-01-02 13:48:05,033 :INFO :******** Click the Log in Button*******
 2025-01-02 13:48:13,254 :INFO :********Login Test is successful********
+2025-01-13 13:16:57,292 :INFO :====== WebDriver manager ======
+2025-01-13 13:16:58,351 :INFO :Get LATEST geckodriver version for 134.0 firefox
+2025-01-13 13:16:58,475 :INFO :Get LATEST geckodriver version for 134.0 firefox
+2025-01-13 13:16:58,565 :INFO :There is no [win64] geckodriver "v0.35.0" for browser firefox "134.0" in cache
+2025-01-13 13:16:58,565 :INFO :Get LATEST geckodriver version for 134.0 firefox
+2025-01-13 13:16:58,664 :INFO :Getting latest mozilla release info for v0.35.0
+2025-01-13 13:16:58,821 :INFO :About to download new driver from https://github.com/mozilla/geckodriver/releases/download/v0.35.0/geckodriver-v0.35.0-win64.zip
+2025-01-13 13:16:59,266 :INFO :Driver downloading response is 200
+2025-01-13 13:16:59,421 :INFO :Get LATEST geckodriver version for 134.0 firefox
+2025-01-13 13:16:59,553 :INFO :Driver has been saved in cache [C:\Users\Owner\.wdm\drivers\geckodriver\win64\v0.35.0]
+2025-01-13 13:17:05,078 :INFO :******** Verifying Login test ********
+2025-01-13 13:17:05,078 :INFO :********Call the Browser Configuration********
+2025-01-13 13:17:06,259 :INFO :********Define the LoginPage Driver********
+2025-01-13 13:17:16,272 :INFO :********Type the Username*******
+2025-01-13 13:17:19,468 :INFO :********Type the Password*******
+2025-01-13 13:17:22,680 :INFO :******** Click the Log in Button*******
+2025-01-13 13:17:30,886 :INFO :********Login Test is successful********
+2025-01-13 13:17:44,040 :INFO :====== WebDriver manager ======
+2025-01-13 13:17:45,026 :INFO :Get LATEST geckodriver version for 134.0 firefox
+2025-01-13 13:17:45,194 :INFO :Get LATEST geckodriver version for 134.0 firefox
+2025-01-13 13:17:45,291 :INFO :Driver [C:\Users\Owner\.wdm\drivers\geckodriver\win64\v0.35.0\geckodriver.exe] found in cache
+2025-01-13 13:17:50,987 :INFO :******** Verifying Login test ********
+2025-01-13 13:17:50,987 :INFO :********Call the Browser Configuration********
+2025-01-13 13:17:51,911 :INFO :********Define the LoginPage Driver********
+2025-01-13 13:18:01,921 :INFO :********Type the Username*******
+2025-01-13 13:18:05,025 :INFO :********Type the Password*******
+2025-01-13 13:18:08,091 :INFO :******** Click the Log in Button*******
+2025-01-13 13:18:16,282 :INFO :********Login Test is successful********
