@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     triggers {
-        pollSCM('H/5 0 * * *') // This schedules the pipeline to run every day at midnight.
+        pollSCM('@midnight') // This schedules the pipeline to run every day at midnight.
     }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '447bbc4c-d2c8-40c9-a6f3-61e5e8b936b6', url: 'https://github.com/Brian0213/ProjectTest.git']])
+                git branch: 'main', url: 'https://github.com/Brian0213/ProjectTest.git', credentialsId: '447bbc4c-d2c8-40c9-a6f3-61e5e8b936b6'
             }
         }
         stage('Install Dependencies') {
@@ -45,7 +45,7 @@ pipeline {
                         bat '''
                             venv\\Scripts\\activate
                             set PYTHONPATH=%WORKSPACE%
-                            python3 testCases/test_login.py
+                            python testCases\\test_login.py
                         '''
                     }
                 }
@@ -53,13 +53,26 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'The job has been tested'
-            }
-        }
-        post {
-            always { 
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            . venv/bin/activate
+                            pytest tests/
+                        '''
+                    } else {
+                        bat '''
+                            venv\\Scripts\\activate
+                            pytest tests/
+                        '''
+                    }
+                }
             }
         }
     }
+    post {
+        always { 
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'reports', reportFiles: 'index.html', reportName: 'HTML Report'])
+        }
+    }
 }
+
