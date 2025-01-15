@@ -24,7 +24,7 @@ pipeline {
                     } else {
                         bat '''
                             python -m venv venv
-                            venv\\Scripts\\activate
+                            venv\Scripts\activate
                             pip install --upgrade pip
                             pip install -r requirements.txt
                         '''
@@ -43,7 +43,7 @@ pipeline {
                         '''
                     } else {
                         bat '''
-                            venv\\Scripts\\activate
+                            venv\Scripts\activate
                             set PYTHONPATH=%WORKSPACE%
                             python3 testCases/test_login.py
                         '''
@@ -57,5 +57,20 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            publishHTML([
+                allowMissing: false, 
+                alwaysLinkToLastBuild: false, 
+                keepAll: false, 
+                reportDir: 'reports', 
+                reportFiles: 'index.html', 
+                reportName: 'HTML Report'
+            ])
+        }
+    }
 }
+
+
 
