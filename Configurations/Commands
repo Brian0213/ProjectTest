@@ -23,7 +23,7 @@ pytest -v -s --alluredir="C:\Users\oluse\PycharmProjects\ProjectTest\allurerepor
 To generate the allure report, launch the command line in admin mode and run the command:
 
 allure serve C:\Users\oluse\PycharmProjects\ProjectTest\allurereports\reports
-
+C:\Users\Owner\PycharmProjects\ProjectTest\allurereports\reports
 To upgrade webdriver manager:
 1. Uninstall : pip uninstall webdriver_manager
 2. Reinstall: pip install webdriver_manager --upgrade

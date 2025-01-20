@@ -3,7 +3,7 @@ import sys
 import os
 import pytest
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../pageObjects')))
-from pageObjects.LoginPage import LoginPage
+from pageObjects.LoginPage1 import LoginPage1
 from utilis.readProperties import ReadConfig
 from utilis.customLogger import LogGen
 
@@ -25,7 +25,7 @@ class Test_001_Login:
         self.driver.implicitly_wait(10)
         self.driver.get(self.baseURL)
         self.logger.info("********Define the LoginPage Driver********")
-        self.lp = LoginPage(self.driver)
+        self.lp = LoginPage1(self.driver)
         time.sleep(10)
         self.logger.info("********Type the Username*******")
         self.lp.setUserName(self.username)
