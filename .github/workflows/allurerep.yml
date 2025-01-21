@@ -20,13 +20,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11' # Or your preferred version
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-html allure-pytest # Ensure pytest and allure-pytest are installed
+          pip install pytest pytest-html allure-pytest
 
       - name: Install Chrome Driver
         run: |
@@ -67,7 +67,7 @@ jobs:
           name: Allure Report
           path: allure-report
 
-      - name: Deploy Allure Report to GitHub Pages (Optional)
+      - name: Deploy Allure Report to GitHub Pages
         if: ${{ github.event_name == 'push' }}
         uses: peaceiris/actions-gh-pages@v4
         with:
