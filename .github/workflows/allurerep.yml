@@ -44,9 +44,10 @@ jobs:
 
       - name: Install Allure CLI
         run: |
-          curl -o allure.zip -sSL https://github.com/allure-framework/allure2/releases/latest/download/allure-commandline.zip
-          unzip allure.zip -d /usr/local/bin/allure
-          export PATH=$PATH:/usr/local/bin/allure/bin
+          wget -q -O allure-commandline.zip https://github.com/allure-framework/allure2/releases/latest/download/allure-commandline.zip
+          unzip allure-commandline.zip -d /usr/local/bin/allure
+          sudo ln -s /usr/local/bin/allure/bin/allure /usr/local/bin/allure
+          allure --version
 
       - name: Run Selenium tests with pytest (Headless mode)
         run: |
