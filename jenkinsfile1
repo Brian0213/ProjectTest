@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        pollSCM('H/15 0 * * *') // Runs every day at midnight
+    }
+
     stages {
         stage('Setup Environment') {
             steps {
