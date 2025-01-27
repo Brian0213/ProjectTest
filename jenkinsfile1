@@ -30,7 +30,11 @@ pipeline {
                             chmod +x chromedriver
                             sudo mv chromedriver /usr/local/bin/
                             rm chromedriver_linux64.zip
-                            sudo pkill chrome
+                            
+                            # Check if Chrome is running and kill processes if found
+                            if pgrep -x "chrome" > /dev/null; then
+                                sudo pkill chrome
+                            fi
                         '''
                     }
                 }
@@ -131,4 +135,5 @@ pipeline {
         }
     }
 }
+
 
