@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        cron('H/15 0 * * *') // This schedules the pipeline to run every day at midnight.
+        pollSCM('H/15 0 * * *') // This schedules the pipeline to run every day at midnight.
     }
 
     stages {
