@@ -72,8 +72,8 @@ pipeline {
         stage('Publish Allure Reports') {
             steps {
                 script {
-                    if (fileExists('allurereports') && sh(returnStdout: true, script: "find allurereports -type f | wc -l").trim().toInteger() > 0) {
-                        allure includeProperties: false, jdk: '', results: [[path: 'allurereports']]
+                    if (fileExists('Reports') && sh(returnStdout: true, script: "find Reports -type f | wc -l").trim().toInteger() > 0) {
+                        allure includeProperties: false, jdk: '', results: [[path: 'Reports']]
                     } else {
                         echo "No Allure reports found to publish."
                     }
