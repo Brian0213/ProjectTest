@@ -30,6 +30,7 @@ pipeline {
                             chmod +x chromedriver
                             sudo mv chromedriver /usr/local/bin/
                             rm chromedriver_linux64.zip
+                            sudo pkill chrome
                         '''
                     }
                 }
