@@ -39,13 +39,13 @@ pipeline {
                         sh '''
                             . venv/bin/activate
                             export PYTHONPATH=$WORKSPACE
-                            python3 testCases/
+                            python3 testCases/*
                         '''
                     } else {
                         bat '''
                             venv\\Scripts\\activate
                             set PYTHONPATH=%WORKSPACE%
-                            python3 testCases/
+                            python3 testCases/*
                         '''
                     }
                 }
