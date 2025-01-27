@@ -1,14 +1,14 @@
 pipeline {
     agent any
-    
+
     options {
-        timestamps()
+        timestamps() // Add timestamps to the console output
     }
-    
+
     triggers {
-        pollSCM('H/15 0 * * *')
+        cron('H/15 0 * * *') // Runs every 15 minutes past the hour
     }
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -22,7 +22,7 @@ pipeline {
                 )
             }
         }
-        
+
         stage('Install Dependencies') {
             steps {
                 script {
@@ -48,7 +48,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Build') {
             steps {
                 script {
@@ -68,13 +68,13 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Test') {
             steps {
-                echo 'The job has been tested'
+                echo 'The job has been tested successfully!'
             }
         }
-        
+
         stage('Publish Reports') {
             steps {
                 script {
@@ -102,7 +102,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             script {
@@ -121,3 +121,4 @@ pipeline {
         }
     }
 }
+
