@@ -2,7 +2,6 @@ pipeline {
     agent any
     
     options {
-        // Add timestamps to console output
         timestamps()
     }
     
@@ -106,14 +105,12 @@ pipeline {
     
     post {
         always {
-            node {  // Adding node context for file operations
-                script {
-                    // Clean up workspace
-                    cleanWs()
-                    
-                    // Optional: Archive artifacts
-                    archiveArtifacts artifacts: 'Reports/**', allowEmptyArchive: true
-                }
+            script {
+                // Clean up workspace
+                cleanWs()
+                
+                // Archive artifacts
+                archiveArtifacts artifacts: 'Reports/**', allowEmptyArchive: true
             }
         }
         success {
