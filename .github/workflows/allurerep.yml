@@ -54,7 +54,7 @@ jobs:
 
       - name: Run Selenium tests with pytest (Headless mode)
         run: |
-          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases/* --alluredir=Reports
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases/ --alluredir=Reports
 
       - name: Generate Allure Report
         run: |
