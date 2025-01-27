@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        cron('H/15 0 * * *') // Runs every day at midnight
+        pollSCM('H/15 0 * * *') // Runs every day at midnight
     }
     stages {
         stage('Setup Chrome') {
