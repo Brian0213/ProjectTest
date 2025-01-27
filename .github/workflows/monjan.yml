@@ -44,7 +44,7 @@ jobs:
 
       - name: Run Selenium tests with pytest (Headless mode)
         run: |
-          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases/ --alluredir=Reports --html=Reports/report.html
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases/ --html=Reports/report.html
         continue-on-error: true  # Ensure this step does not stop the workflow even if tests fail
 
       - name: Ensure Reports folder exists
