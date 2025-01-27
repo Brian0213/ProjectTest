@@ -5,43 +5,47 @@ pipeline {
         timestamps()
     }
     
-    stages {
-        stage('Setup Chrome') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh '''
-                            # Update apt and install necessary dependencies
-                            sudo apt-get update
-                            sudo apt-get install -y wget unzip curl
+    stage('Setup Chrome') {
+      steps {
+        script {
+            if (isUnix()) {
+                sh '''
+                    # Update apt and install necessary dependencies
+                    sudo apt-get update
+                    sudo apt-get install -y wget unzip curl
 
-                            # Fetch and install the latest stable version of Google Chrome
-                            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                    # Fetch and install the latest stable version of Google Chrome
+                    wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-                            # Install Google Chrome
-                            sudo apt install -y ./google-chrome-stable_current_amd64.deb
-                            rm google-chrome-stable_current_amd64.deb
+                    # Install Google Chrome
+                    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+                    rm google-chrome-stable_current_amd64.deb
 
-                            # Install the compatible ChromeDriver version
-                            CHROME_VERSION=$(google-chrome-stable --version | sed 's/Google Chrome //')
-                            DRIVER_VERSION=$(curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
-                            wget -q https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
+                    # Fetch the major version of Chrome
+                    CHROME_VERSION=$(google-chrome-stable --version | sed 's/Google Chrome //' | cut -d '.' -f 1)
 
-                            # Unzip and move ChromeDriver to /usr/local/bin
-                            unzip -o chromedriver_linux64.zip
-                            chmod +x chromedriver
-                            sudo mv chromedriver /usr/local/bin/
-                            rm chromedriver_linux64.zip
+                    # Fetch the compatible ChromeDriver version based on the major version
+                    DRIVER_VERSION=$(curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
 
-                            # Kill any existing Chrome processes
-                            if pgrep -x "chrome" > /dev/null; then
-                                sudo pkill chrome
-                            fi
-                        '''
-                    }
-                }
+                    # Download the correct ChromeDriver version
+                    wget -q https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
+
+                    # Unzip and move ChromeDriver to /usr/local/bin
+                    unzip -o chromedriver_linux64.zip
+                    chmod +x chromedriver
+                    sudo mv chromedriver /usr/local/bin/
+                    rm chromedriver_linux64.zip
+
+                    # Kill any existing Chrome processes
+                    if pgrep -x "chrome" > /dev/null; then
+                        sudo pkill chrome
+                    fi
+                '''
             }
         }
+    }
+}
+
         
         stage('Checkout') {
             steps {
