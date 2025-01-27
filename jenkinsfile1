@@ -112,7 +112,7 @@ pipeline {
                         results: [[path: 'allurereports']]
                     ])
                     
-                    publishHTML([
+                    publishHTML([ 
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: false,
@@ -120,6 +120,23 @@ pipeline {
                         reportFiles: 'index.html',
                         reportName: 'HTML Report',
                         reportTitles: '',
+                        useWrapperFileDirectly: true
+                    ])
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            script {
+                archiveArtifacts artifacts: 'Reports/**', allowEmptyArchive: true
+                cleanWs()
+            }
+        }
+    }
+}
+
        
 
 
