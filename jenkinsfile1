@@ -1,30 +1,16 @@
 pipeline {
-    agent {
-        docker{
-            image 'python:3.11'
-            args '-u root'  // Run as root in container
-        }
+    agent any
+    
+    options {
+        // Add timestamps to console output
+        timestamps()
     }
+    
     triggers {
-        pollSCM('H/15 0 * * *') // Runs every day at midnight
+        cron('H/15 0 * * *')
     }
+    
     stages {
-        stage('Setup Chrome') {
-            steps {
-                script {
-                    if (isUnix()) {
-                        sh '''
-                            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-                            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
-                            apt-get update
-                            apt-get install -y google-chrome-stable
-                            apt-get install -y xvfb
-                        '''
-                    }
-                }
-            }
-        }
-        
         stage('Checkout') {
             steps {
                 checkout scmGit(
@@ -71,8 +57,6 @@ pipeline {
                         sh '''
                             . venv/bin/activate
                             export PYTHONPATH=$WORKSPACE
-                            export DISPLAY=:99
-                            Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
                             pytest testCases/* --alluredir=./allurereports --html=Reports/index.html
                         '''
                     } else {
@@ -92,23 +76,19 @@ pipeline {
             }
         }
         
-        stage('Publish Allure Reports') {
+        stage('Publish Reports') {
             steps {
                 script {
-                    if (fileExists('allurereports') && sh(returnStdout: true, script: "find allurereports -type f | wc -l").trim().toInteger() > 0) {
-                        allure includeProperties: false, jdk: '', results: [[path: 'allurereports']]
-                    } else {
-                        echo "No Allure reports found to publish."
-                    }
-                }
-            }
-        }
-    }
-    
-    post {
-        always {
-            script {
-                if (fileExists('Reports/index.html')) {
+                    // Publish Allure Report
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allurereports']]
+                    ])
+                    
+                    // Publish HTML Report
                     publishHTML([
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
@@ -119,10 +99,28 @@ pipeline {
                         reportTitles: '',
                         useWrapperFileDirectly: true
                     ])
-                } else {
-                    echo "No HTML report found to publish."
                 }
             }
+        }
+    }
+    
+    post {
+        always {
+            node {  // Adding node context for file operations
+                script {
+                    // Clean up workspace
+                    cleanWs()
+                    
+                    // Optional: Archive artifacts
+                    archiveArtifacts artifacts: 'Reports/**', allowEmptyArchive: true
+                }
+            }
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }
