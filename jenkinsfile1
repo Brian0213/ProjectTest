@@ -1,11 +1,25 @@
 pipeline {
     agent any
-
     triggers {
-        pollSCM('H/15 0 * * *') // This schedules the pipeline to run every day at midnight.
+        cron('H/15 0 * * *') // Runs every day at midnight
     }
-
     stages {
+        stage('Setup Chrome') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+                            echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+                            apt-get update
+                            apt-get install -y google-chrome-stable
+                            apt-get install -y xvfb
+                        '''
+                    }
+                }
+            }
+        }
+        
         stage('Checkout') {
             steps {
                 checkout scmGit(
@@ -18,7 +32,7 @@ pipeline {
                 )
             }
         }
-
+        
         stage('Install Dependencies') {
             steps {
                 script {
@@ -28,7 +42,8 @@ pipeline {
                             . venv/bin/activate
                             pip install --upgrade pip
                             pip install -r requirements.txt
-                            pip install pytest pytest-html
+                            pip install pytest pytest-html pytest-xdist
+                            pip install selenium webdriver-manager
                         '''
                     } else {
                         bat '''
@@ -36,13 +51,14 @@ pipeline {
                             venv\\Scripts\\activate
                             pip install --upgrade pip
                             pip install -r requirements.txt
-                            pip install pytest pytest-html
+                            pip install pytest pytest-html pytest-xdist
+                            pip install selenium webdriver-manager
                         '''
                     }
                 }
             }
         }
-
+        
         stage('Build') {
             steps {
                 script {
@@ -50,45 +66,58 @@ pipeline {
                         sh '''
                             . venv/bin/activate
                             export PYTHONPATH=$WORKSPACE
-                            pytest testCases/* --alluredir=./allurereports
+                            export DISPLAY=:99
+                            Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+                            pytest testCases/* --alluredir=./allurereports --html=Reports/index.html
                         '''
                     } else {
                         bat '''
                             venv\\Scripts\\activate
                             set PYTHONPATH=%WORKSPACE%
-                            pytest testCases/* --alluredir=./allurereports
+                            pytest testCases/* --alluredir=./allurereports --html=Reports\\index.html
                         '''
                     }
                 }
             }
         }
-
+        
         stage('Test') {
             steps {
                 echo 'The job has been tested'
             }
         }
-
+        
         stage('Publish Allure Reports') {
             steps {
-                echo "Publish Allure"
-                allure includeProperties: false, jdk: '', results: [[path: 'allurereports']]
+                script {
+                    if (fileExists('allurereports') && sh(returnStdout: true, script: "find allurereports -type f | wc -l").trim().toInteger() > 0) {
+                        allure includeProperties: false, jdk: '', results: [[path: 'allurereports']]
+                    } else {
+                        echo "No Allure reports found to publish."
+                    }
+                }
             }
         }
     }
-
+    
     post {
         always {
-            publishHTML([
-                allowMissing: false,
-                alwaysLinkToLastBuild: false,
-                keepAll: false,
-                reportDir: 'Reports',
-                reportFiles: 'index.html',
-                reportName: 'HTML Report',
-                reportTitles: '',
-                useWrapperFileDirectly: true
-            ])
+            script {
+                if (fileExists('Reports/index.html')) {
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: false,
+                        reportDir: 'Reports',
+                        reportFiles: 'index.html',
+                        reportName: 'HTML Report',
+                        reportTitles: '',
+                        useWrapperFileDirectly: true
+                    ])
+                } else {
+                    echo "No HTML report found to publish."
+                }
+            }
         }
     }
 }
