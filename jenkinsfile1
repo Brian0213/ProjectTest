@@ -1,0 +1,105 @@
+pipeline {
+    agent any
+
+    triggers {
+        cron('H/15 0 * * *') // Runs every day at midnight
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        credentialsId: '447bbc4c-d2c8-40c9-a6f3-61e5e8b936b6',
+                        url: 'https://github.com/Brian0213/ProjectTest.git'
+                    ]]
+                )
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            python3 -m venv venv
+                            . venv/bin/activate
+                            pip install --upgrade pip
+                            pip install -r requirements.txt
+                            pip install pytest pytest-html
+                        '''
+                    } else {
+                        bat '''
+                            python -m venv venv
+                            venv\\Scripts\\activate
+                            pip install --upgrade pip
+                            pip install -r requirements.txt
+                            pip install pytest pytest-html
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            . venv/bin/activate
+                            export PYTHONPATH=$WORKSPACE
+                            pytest testCases/* --alluredir=./allurereports --html=Reports/index.html
+                        '''
+                    } else {
+                        bat '''
+                            venv\\Scripts\\activate
+                            set PYTHONPATH=%WORKSPACE%
+                            python testCases/* --alluredir=./allurereports --html=Reports\\index.html
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'The job has been tested'
+            }
+        }
+
+        stage('Publish Allure Reports') {
+            steps {
+                script {
+                    if (fileExists('allurereports') && sh(returnStdout: true, script: "find allurereports -type f | wc -l").trim().toInteger() > 0) {
+                        allure includeProperties: false, jdk: '', results: [[path: 'allurereports']]
+                    } else {
+                        echo "No Allure reports found to publish."
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            script {
+                if (fileExists('Reports/index.html')) {
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: false,
+                        reportDir: 'Reports',
+                        reportFiles: 'index.html',
+                        reportName: 'HTML Report',
+                        reportTitles: '',
+                        useWrapperFileDirectly: true
+                    ])
+                } else {
+                    echo "No HTML report found to publish."
+                }
+            }
+        }
+    }
+}
