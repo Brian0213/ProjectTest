@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        cron('H/15 0 * * *') // Runs every day at midnight
+        cron('H/15 0 * * *') // This schedules the pipeline to run every day at midnight.
     }
 
     stages {
@@ -50,13 +50,13 @@ pipeline {
                         sh '''
                             . venv/bin/activate
                             export PYTHONPATH=$WORKSPACE
-                            python3 testCases/* --alluredir=./Reports --html=Reports/index.html
+                            python3 testCases/* --alluredir=./allurereports
                         '''
                     } else {
                         bat '''
                             venv\\Scripts\\activate
                             set PYTHONPATH=%WORKSPACE%
-                            python3 testCases/* --alluredir=./Reports --html=Reports\\index.html
+                            python3 testCases/* --alluredir=./allurereports
                         '''
                     }
                 }
@@ -71,35 +71,24 @@ pipeline {
 
         stage('Publish Allure Reports') {
             steps {
-                script {
-                    if (fileExists('Reports') && sh(returnStdout: true, script: "find Reports -type f | wc -l").trim().toInteger() > 0) {
-                        allure includeProperties: false, jdk: '', results: [[path: 'Reports']]
-                    } else {
-                        echo "No Allure reports found to publish."
-                    }
-                }
+                echo "Publish Allure"
+                allure includeProperties: false, jdk: '', results: [[path: 'allurereports']]
             }
         }
     }
 
     post {
         always {
-            script {
-                if (fileExists('Reports/index.html')) {
-                    publishHTML([
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: false,
-                        reportDir: 'Reports',
-                        reportFiles: 'index.html',
-                        reportName: 'HTML Report',
-                        reportTitles: '',
-                        useWrapperFileDirectly: true
-                    ])
-                } else {
-                    echo "No HTML report found to publish."
-                }
-            }
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: false,
+                keepAll: false,
+                reportDir: 'Reports',
+                reportFiles: 'index.html',
+                reportName: 'HTML Report',
+                reportTitles: '',
+                useWrapperFileDirectly: true
+            ])
         }
     }
 }
