@@ -11,30 +11,28 @@ pipeline {
                 script {
                     if (isUnix()) {
                         sh '''
-                            # Install necessary tools
+                            # Update apt and install necessary dependencies
                             sudo apt-get update
                             sudo apt-get install -y wget unzip curl
 
                             # Fetch and install the latest stable version of Google Chrome
-                            # Ensure that the version of Chrome is the stable version
-                            CHROME_VERSION=$(curl -sSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb)
+                            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
-                            # Install Chrome
-                            wget -q ${CHROME_VERSION}
-                            sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+                            # Install Google Chrome
+                            sudo apt install -y ./google-chrome-stable_current_amd64.deb
                             rm google-chrome-stable_current_amd64.deb
-                            
-                            # Install ChromeDriver corresponding to the stable version of Chrome
-                            # Get the correct version of ChromeDriver
-                            CHROME_DRIVER_VERSION=$(google-chrome-stable --version | sed 's/Google Chrome //')
 
-                            # Download and install the appropriate ChromeDriver
-                            wget -q https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_DRIVER_VERSION%.*})/chromedriver_linux64.zip
+                            # Install the compatible ChromeDriver version
+                            CHROME_VERSION=$(google-chrome-stable --version | sed 's/Google Chrome //')
+                            DRIVER_VERSION=$(curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
+                            wget -q https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
+
+                            # Unzip and move ChromeDriver to /usr/local/bin
                             unzip -o chromedriver_linux64.zip
                             chmod +x chromedriver
                             sudo mv chromedriver /usr/local/bin/
                             rm chromedriver_linux64.zip
-                            
+
                             # Kill any existing Chrome processes
                             if pgrep -x "chrome" > /dev/null; then
                                 sudo pkill chrome
@@ -122,21 +120,6 @@ pipeline {
                         reportFiles: 'index.html',
                         reportName: 'HTML Report',
                         reportTitles: '',
-                        useWrapperFileDirectly: true
-                    ])
-                }
-            }
-        }
-    }
-    
-    post {
-        always {
-            script {
-                archiveArtifacts artifacts: 'Reports/**', allowEmptyArchive: true
-                cleanWs()
-            }
-        }
-    }
-}
+       
 
 
