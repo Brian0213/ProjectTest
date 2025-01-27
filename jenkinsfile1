@@ -1,57 +1,92 @@
 pipeline {
     agent any
-
-    triggers {
-        pollSCM('H/15 0 * * *') // Runs every day at midnight
+    
+    options {
+        timestamps()
     }
-
+    
+    triggers {
+        pollSCM('H/15 0 * * *')
+    }
+    
     stages {
-        stage('Setup Environment') {
+        stage('Setup Chrome') {
             steps {
                 script {
                     if (isUnix()) {
                         sh '''
-                            # Set up virtual environment
-                            python3 -m venv venv
-                            . venv/bin/activate
-                            pip install --upgrade pip
+                            # Install necessary tools
+                            sudo apt-get update
+                            sudo apt-get install -y wget unzip
                             
-                            # Install dependencies
-                            pip install -r requirements.txt
-                            pip install pytest pytest-html pytest-xdist selenium webdriver-manager
-                        '''
-                    } else {
-                        bat '''
-                            # Set up virtual environment
-                            python -m venv venv
-                            venv\\Scripts\\activate
-                            pip install --upgrade pip
+                            # Install Chrome
+                            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+                            sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+                            rm google-chrome-stable_current_amd64.deb
                             
-                            # Install dependencies
-                            pip install -r requirements.txt
-                            pip install pytest pytest-html pytest-xdist selenium webdriver-manager
+                            # Install ChromeDriver
+                            wget -q https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
+                            unzip -o chromedriver_linux64.zip
+                            chmod +x chromedriver
+                            sudo mv chromedriver /usr/local/bin/
+                            rm chromedriver_linux64.zip
                         '''
                     }
                 }
             }
         }
-
-        stage('Run Tests') {
+        
+        stage('Checkout') {
+            steps {
+                checkout scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        credentialsId: '447bbc4c-d2c8-40c9-a6f3-61e5e8b936b6',
+                        url: 'https://github.com/Brian0213/ProjectTest.git'
+                    ]]
+                )
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            python3 -m venv venv
+                            . venv/bin/activate
+                            pip install --upgrade pip
+                            pip install -r requirements.txt
+                            pip install pytest pytest-html pytest-xdist
+                            pip install selenium webdriver-manager
+                        '''
+                    } else {
+                        bat '''
+                            python -m venv venv
+                            venv\\Scripts\\activate
+                            pip install --upgrade pip
+                            pip install -r requirements.txt
+                            pip install pytest pytest-html pytest-xdist
+                            pip install selenium webdriver-manager
+                        '''
+                    }
+                }
+            }
+        }
+        
+        stage('Build') {
             steps {
                 script {
                     if (isUnix()) {
                         sh '''
                             . venv/bin/activate
-                            
-                            # Ensure WebDriver Manager fetches the latest ChromeDriver
                             export PYTHONPATH=$WORKSPACE
                             pytest testCases/* --alluredir=./allurereports --html=Reports/index.html
                         '''
                     } else {
                         bat '''
                             venv\\Scripts\\activate
-                            
-                            # Ensure WebDriver Manager fetches the latest ChromeDriver
                             set PYTHONPATH=%WORKSPACE%
                             pytest testCases/* --alluredir=./allurereports --html=Reports\\index.html
                         '''
@@ -59,11 +94,39 @@ pipeline {
                 }
             }
         }
+        
+        stage('Publish Reports') {
+            steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allurereports']]
+                    ])
+                    
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: false,
+                        reportDir: 'Reports',
+                        reportFiles: 'index.html',
+                        reportName: 'HTML Report',
+                        reportTitles: '',
+                        useWrapperFileDirectly: true
+                    ])
+                }
+            }
+        }
     }
-
+    
     post {
         always {
-            echo 'Pipeline execution complete!'
+            script {
+                archiveArtifacts artifacts: 'Reports/**', allowEmptyArchive: true
+                cleanWs()
+            }
         }
     }
 }
