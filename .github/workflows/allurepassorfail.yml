@@ -61,6 +61,7 @@ jobs:
         run: |
           export PATH=$PATH:$(pwd)/allure-2.32.0/bin
           mkdir allure-report
+          
           allure generate Reports -o allure-report --clean
 
       - name: Upload Allure Report as Artifact
