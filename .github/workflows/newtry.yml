@@ -1,0 +1,48 @@
+name: Selenium Pytest CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Setup Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-html allure-pytest selenium
+
+      # Run Pytest with HTML and Allure reports
+      - name: Run Selenium Pytest
+        run: |
+          pytest --html=reports/html_report.html --self-contained-html --alluredir=reports/allure-results
+
+      # Upload HTML report as an artifact
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: reports/html_report.html
+
+      # Upload Allure results as an artifact
+      - name: Upload Allure Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results
+          path: reports/allure-results/

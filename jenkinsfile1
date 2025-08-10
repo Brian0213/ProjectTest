@@ -1,0 +1,147 @@
+pipeline {
+    agent any
+    
+    options {
+        timestamps()
+    }
+
+    stages {
+        stage('Setup Chrome') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            # Update apt and install necessary dependencies
+                            sudo apt-get update
+                            sudo apt-get install -y wget unzip curl
+
+                            # Fetch and install the latest stable version of Google Chrome
+                            wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+                            # Install Google Chrome
+                            sudo apt install -y ./google-chrome-stable_current_amd64.deb
+                            rm google-chrome-stable_current_amd64.deb
+
+                            # Fetch the major version of Chrome
+                            CHROME_VERSION=$(google-chrome-stable --version | sed 's/Google Chrome //' | cut -d '.' -f 1)
+
+                            # Fetch the compatible ChromeDriver version based on the major version
+                            DRIVER_VERSION=$(curl -sSL https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION})
+
+                            # Download the correct ChromeDriver version
+                            wget -q https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
+
+                            # Unzip and move ChromeDriver to /usr/local/bin
+                            unzip -o chromedriver_linux64.zip
+                            chmod +x chromedriver
+                            sudo mv chromedriver /usr/local/bin/
+                            rm chromedriver_linux64.zip
+
+                            # Kill any existing Chrome processes
+                            if pgrep -x "chrome" > /dev/null; then
+                                sudo pkill chrome
+                            fi
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                checkout scmGit(
+                    branches: [[name: '*/main']],
+                    extensions: [],
+                    userRemoteConfigs: [[
+                        credentialsId: '447bbc4c-d2c8-40c9-a6f3-61e5e8b936b6',
+                        url: 'https://github.com/Brian0213/ProjectTest.git'
+                    ]])
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            python3 -m venv venv
+                            . venv/bin/activate
+                            pip install --upgrade pip
+                            pip install -r requirements.txt
+                            pip install pytest pytest-html pytest-xdist
+                            pip install selenium webdriver-manager
+                        '''
+                    } else {
+                        bat '''
+                            python -m venv venv
+                            venv\\Scripts\\activate
+                            pip install --upgrade pip
+                            pip install -r requirements.txt
+                            pip install pytest pytest-html pytest-xdist
+                            pip install selenium webdriver-manager
+                        '''
+                    }
+                }
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh '''
+                            . venv/bin/activate
+                            export PYTHONPATH=$WORKSPACE
+                            pytest testCases/* --alluredir=./allurereports --html=Reports/index.html
+                        '''
+                    } else {
+                        bat '''
+                            venv\\Scripts\\activate
+                            set PYTHONPATH=%WORKSPACE%
+                            pytest testCases/* --alluredir=./allurereports --html=Reports\\index.html
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Publish Reports') {
+            steps {
+                script {
+                    allure([ 
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allurereports']]
+                    ])
+                    
+                    publishHTML([ 
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: false,
+                        reportDir: 'Reports',
+                        reportFiles: 'index.html',
+                        reportName: 'HTML Report',
+                        reportTitles: '',
+                        useWrapperFileDirectly: true
+                    ])
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            script {
+                archiveArtifacts artifacts: 'Reports/**', allowEmptyArchive: true
+                cleanWs()
+            }
+        }
+    }
+}
+
+
+       
+
+

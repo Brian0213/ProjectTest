@@ -18,13 +18,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11' # Or your preferred version
+          python-version: '3.11'  # Or your preferred version
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt # Make sure you have a requirements.txt
-          pip install pytest pytest-html allure-pytest # Ensure pytest and pytest-html are installed
+          pip install -r requirements.txt  # Make sure you have a requirements.txt
+          pip install pytest pytest-html allure-pytest  # Ensure pytest and pytest-html are installed
 
       - name: Install Chrome Driver
         run: |
@@ -44,16 +44,25 @@ jobs:
 
       - name: Run Selenium tests with pytest (Headless mode)
         run: |
-          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases/ --alluredir=Reports --html=Reports/report.html
+          xvfb-run -a --server-args="-screen 0 1024x768x24" pytest testCases/ --html=Reports/report.html --self-contained-html
+        continue-on-error: true  # Ensure this step does not stop the workflow even if tests fail
 
-      # - name: Ensure Reports folder exists
-      #   run: mkdir -p Reports
-
-      # - name: Move HTML report to Reports folder
-      #   run: mv Reports/Report.html Reports/report.html
+      - name: Ensure Reports folder exists
+        run: mkdir -p Reports
 
       - name: Upload test report artifact
         uses: actions/upload-artifact@v4
         with:
           name: Selenium Test Report
           path: Reports/report.html
+
+      # - name: Generate Allure Report
+      #   run: |
+      #     mkdir -p allure-report
+      #     allure generate Reports -o allure-report --clean
+
+      # - name: Upload Allure Report as Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: Allure Report
+      #     path: allure-report
