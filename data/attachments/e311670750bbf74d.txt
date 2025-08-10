@@ -1,0 +1,4 @@
+INFO     root:test_login.py:21 ******** Verifying Login test ********
+INFO     root:test_login.py:22 ********Call the Browser Configuration********
+INFO     root:test_login.py:26 ********Define the LoginPage Driver********
+INFO     root:test_login.py:29 ********Type the Username*******
