@@ -1,5 +1,0 @@
-[32mINFO    [0m WDM:logger.py:11 ====== WebDriver manager ======
-[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome 108.0.5359
-[32mINFO    [0m WDM:logger.py:11 Driver [C:\Users\oluse\.wdm\drivers\chromedriver\win32\108.0.5359\chromedriver.exe] found in cache
-[32mINFO    [0m root:test_login.py:20 ******** Verifying Login test ********
-[32mINFO    [0m root:test_login.py:28 ******** Login Test is successful *******

@@ -533,7 +533,7 @@ def check_typevar(
 ) -> None:
     if origin_type.__bound__ is not None:
         annotation = (
-            Type[origin_type.__bound__] if subclass_check else origin_type.__bound__
+            type[origin_type.__bound__] if subclass_check else origin_type.__bound__
         )
         check_type_internal(value, annotation, memo)
     elif origin_type.__constraints__:
@@ -648,7 +648,12 @@ def check_io(
 
 
 def check_signature_compatible(subject: type, protocol: type, attrname: str) -> None:
-    subject_sig = inspect.signature(getattr(subject, attrname))
+    subject_attr = getattr(subject, attrname)
+    try:
+        subject_sig = inspect.signature(subject_attr)
+    except ValueError:
+        return  # this can happen with builtins where the signature cannot be retrieved
+
     protocol_sig = inspect.signature(getattr(protocol, attrname))
     protocol_type: typing.Literal["instance", "class", "static"] = "instance"
     subject_type: typing.Literal["instance", "class", "static"] = "instance"

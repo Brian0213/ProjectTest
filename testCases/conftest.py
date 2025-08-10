@@ -1,4 +1,7 @@
 # import options as options
+import os
+import subprocess
+
 from selenium import webdriver
 import pytest
 from selenium.webdriver.chrome.service import Service
@@ -30,6 +33,52 @@ def setup(browser):
     elif browser == 'firefox':
         driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
     return driver
+
+
+
+
+def pytest_addoption(parser):      # This will get the value from CLI/hooks
+    parser.addoption("--browser")
+
+@pytest.fixture()
+def browser(request):    # This will return the Browser value to the setup method.
+    return request.config.getoption("--browser")
+
+
+# def pytest_sessionfinish(session, exitstatus):
+#     """ Automatically open HTML report after test run """
+#     html_report_path = os.path.abspath("Reports/rep.html")
+#     if os.path.exists(html_report_path):
+#         print(f"\nOpening test report: {html_report_path}")
+#         try:
+#             webbrowser.open(f"file://{html_report_path}")
+#         except Exception as e:
+#             print(f"Failed to open report automatically: {e}")
+#     else:
+#         print("Test report not found: Reports/rep.html")
+
+
+def pytest_sessionfinish(session, exitstatus):
+    """Auto-launch Allure report in browser after test run (pass or fail)"""
+    allure_results_dir = os.path.abspath("AllureReport")
+
+    if os.path.exists(allure_results_dir):
+        try:
+            print(f"\nLaunching Allure report from: {allure_results_dir}")
+            subprocess.Popen(["allure", "serve", allure_results_dir], shell=True)
+        except Exception as e:
+            print(f"Failed to serve Allure report: {e}")
+    else:
+        print("Allure results directory not found. Did you run with --alluredir=AllureReport?")
+
+
+
+
+
+
+
+
+
 
 # @pytest.fixture(params=["chrome", "firefox"], scope='class')
 # @pytest.fixture()
@@ -84,14 +133,6 @@ def setup(browser):
 # #     #     driver1 = webdriver.Firefox(service=s)
 #     return driver
 
-
-
-def pytest_addoption(parser):      # This will get the value from CLI/hooks
-    parser.addoption("--browser")
-
-@pytest.fixture()
-def browser(request):    # This will return the Browser value to the setup method.
-    return request.config.getoption("--browser")
 
 # @pytest.hookimpl(hookwrapper=True)
 # def pytest_runtest_makereport(item, call):

@@ -16,8 +16,7 @@ class Test_001_Login:
 
     logger = LogGen.loggen()
 
-
-    # @pytest.mark.sanity
+    @pytest.mark.order(1)
     def test_login(self, setup):
         self.logger.info("******** Verifying Login test ********")
         self.logger.info("********Call the Browser Configuration********")

@@ -10,20 +10,19 @@ from utilis.customLogger import LogGen
 
 class Test_001_Login:
 
-    baseURL = ReadConfig.getApplicationURL()
-    username = ReadConfig.getUseremail()
-    password = ReadConfig.getPassword()
+    baseURL1 = ReadConfig.getApplicationURL()
+    username2 = ReadConfig.getUseremail()
+    password3 = ReadConfig.getPassword()
 
     logger = LogGen.loggen()
 
-
-    # @pytest.mark.sanity
+    @pytest.mark.order(2)
     def test_login(self, setup):
         self.logger.info("******** Verifying Login test ********")
         self.logger.info("********Call the Browser Configuration********")
         self.driver = setup
         self.driver.implicitly_wait(10)
-        self.driver.get(self.baseURL)
+        self.driver.get(self.baseURL1)
         self.logger.info("********Define the LoginPage Driver********")
         self.lp = LoginPage(self.driver)
         time.sleep(10)

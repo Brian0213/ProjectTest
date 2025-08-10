@@ -31,6 +31,8 @@ class ReadConfig:
         password = config.get('common info', 'password')
         return password
 
+
+
 # config = configparser.RawConfigParser()
 # # Get the directory containing readProperties.py
 # current_dir = os.path.dirname(os.path.abspath(r"C:\Users\Owner\PycharmProjects\ProjectTest\utilis"))

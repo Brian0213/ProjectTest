@@ -1,0 +1,11 @@
+[32mINFO    [0m WDM:logger.py:11 ====== WebDriver manager ======
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 Get LATEST chromedriver version for google-chrome
+[32mINFO    [0m WDM:logger.py:11 Driver [C:\Users\Owner\.wdm\drivers\chromedriver\win64\131.0.6778.264\chromedriver-win32/chromedriver.exe] found in cache
+[32mINFO    [0m root:test_login1.py:22 ******** Verifying Login test ********
+[32mINFO    [0m root:test_login1.py:23 ********Call the Browser Configuration********
+[32mINFO    [0m root:test_login1.py:27 ********Define the LoginPage Driver********
+[32mINFO    [0m root:test_login1.py:30 ********Type the Username*******
+[32mINFO    [0m root:test_login1.py:33 ********Type the Password*******
+[32mINFO    [0m root:test_login1.py:36 ******** Click the Log in Button*******
+[32mINFO    [0m root:test_login1.py:39 ********Login Test is successful********

@@ -3,7 +3,8 @@ pytest testCases/test_login.py -v --html=Report/cleo1.html --browser chrome # in
 
 pytest testCases/test_archivePage.py -v --html=Report/report.html --browser chrome
 
-pytest -v -s testCases/test_login.py --browser chrome
+
+
 
 pytest -s -v -m "sanity" --html=Report/report.html testCases/ --browser chrome # for sanity test.
 pytest -s -v -m "regression" --html=Report/report.html testCases/ --browser chrome
@@ -38,4 +39,6 @@ After installation: e.g. of how to run the command "pytest --count=6 test_exampl
 
 To update requirements.txt file:
 Run pip freeze > requirements.txt
+
+To install : pip install pytest-order
 
